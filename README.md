@@ -1,6 +1,6 @@
 ## Data Structures and Algoritms
 
-Types of Data Structures(DS from now on)). DS can be broadly grouped into 2 basic types:
+Types of Data Structures(DS from now on). DS can be broadly grouped into 2 basic types:
 1. `Primitive` 
    - Integer
    - Float
@@ -48,3 +48,73 @@ def open_russian_doll(doll):
         open_russian_doll(doll-1)
 ```
 __`Note:`__ `sys.setrecursionlimit(limit)` Set the maximum depth of the Python interpreter stack to limit. This limit prevents infinite recursion from causing an overflow of the C stack and crashing Python. 
+
+Why we need recursion? The reasons to learn recursion:
+
+__`Recursive thinking`__ is very important in programming and it helps us to break down big problems into smaller ones and easier to use. If we compare writing code with `recursive` and `iterative(loops)` way we can say that writing recursive code easier. We need to choose then depending on situation. So when we can use recursion. the important point is subproblem must be similiar, otherwise recursion is not a good choice. But how we know subproblem is similiar in nature. If you should solve problem with one of below cases, it is good candidate for recursion:
+
+- if we can divide the problem into similiar subproblems 
+- Design an algoritm to compute nth...
+- Write code to list n...
+- Implement a method to compute all
+
+__`The prominent uage of recustion`__ in data structures like `trees` and `graphs`. So when we deal with trees recursion almost become mandatory to use.
+
+__`Interviews`__ many big companies ask questions related to recursions during the interviews.
+
+
+__`frequently used`__ It is used in many algorithms.(divide and conquer, greedy and dynamic programming)
+
+
+__`How recursion works?`__
+When we created recursive function we need to take into account two conditions,
+a condition where a function calls itself with a smaller values and second condition to exit from an infinite loop.
+1. a method calls itself.
+2. exit from infinite loop
+
+```python
+def recursive_func(parameters):
+    if exit from condition saticified:
+        return some value
+    else:
+        recursive_func(modified parameter)
+```
+
+```python
+def recursive_func(number):
+    if number < 1:
+      print("smaller than 1")
+    else:
+      recursive_func(number - 1)
+      print(number)
+
+recursive_func(10)
+# the output will be from 1 to 10, this is because of Stack Memory last in, first out principe.
+```
+
+__`Recursive vs Iterative Solutions`__
+Any problem solved with recursion can be solved with iteration.
+```python
+# recursive and iterative way of finding power of 2 of entered number
+
+def power_of_two_rec(n):
+    if n == 0:
+        return 1
+    else:
+        power = power_of_two_rec(n - 1)
+        return power * 2
+
+def power_of_two_iter(n):
+    i = 0
+    power = 1
+    while i < n:
+        power = power * 2
+        i = i +1
+    return power
+
+print(power_of_two_rec(5))
+print(power_of_two_iter(5))
+
+# if output seems strange to you try to do different recursion tests and keep stack DS works in mind to understand it well. Last in first out.
+```
+
