@@ -115,6 +115,100 @@ def power_of_two_iter(n):
 print(power_of_two_rec(5))
 print(power_of_two_iter(5))
 
-# if output seems strange to you try to do different recursion tests and keep stack DS works in mind to understand it well. Last in first out.
+# if output seems strange to you try to do different recursion tests and 
+# keep stack DS works in mind to understand it well. Last in first out.
 ```
 
+In recursive function infinite recursion can lead to system crash, but in 
+iterative function infinite iteration consume cpu cycle. Also recursion repeatedly invokes the mechanism consequently overhead of method calls. This can be expensive for cpu time and memory space. Recursive algos can be very space inefficient. As we explained each recursive call adds new layer to Stack. So if our algo resources to the depth of n, it uses at least O(n) memory.
+
+
+| Points  | Recursion  | Iteration  |   |
+|---|---|---|---|
+| Space efficient | No | Yes  | No stack memory is required in case of iteration  |
+| Time efficient  | No | Yes  | in case of recursion system needs more time for pop and push elements to stack memory which makes recursion less time efficient |
+| Easy to code  | Yes  | No  |  We use recursion especially in  cases we know that a problem can be devided into similiar subproblems |
+
+
+__`When use/avoid recursion`__
+
+`When to use:`
+- when we can easily breakdown a problem into subproblem
+- when we are fine with extra overhead(both time and space) that comes with it
+- when we need a quick working solution instead of efficient one
+- when traverse a tree 
+- when we use memoization in recursion
+
+`when avoid it:`
+- if time and space complexity matters for us
+- recursion uses more memory. if we use embedded memeory. ex: app that takes more memory in the phone is not efficient
+- recursion can be slow
+
+
+`How to write recursion in 3 steps`
+Recursion function calls itself repeatidly until base condition is satisified.Function that calls itself is dangerous and should be treated with caution.
+
+`Factorial example:`
+Factorial is:
+- It is the product of all positive integers less than or equal to n
+- denoted by n!
+- only positive numbers
+- 0 != 1
+
+__`Step 1 Recursive Case - the flow`__
+
+<u>example 1:</u>
+
+If we want to calculate factorial of 4, the answer will be:
+4! = 4 * 3 * 2 * 1=24       
+but how we got this. it is all positive numbers less or equal to n.
+(here 4, so numbers are 4,3,2,1)
+
+<u>example 2:</u>
+
+if want to calculate factorial 10 it will be:
+
+>10! = 10 * 9 * 8 * 7  * 6 * 5  * 4  * 3 * 3  * 2 * 1 = 3628800
+
+based on above we can find factorial n like this
+> n! = n * (n - 1) * (n - 2) * ... * 2 * 1
+
+If we pay attention we can write underlined part as  `(n-1)!`
+> n! = n * <ins>(n - 1) * (n - 2) * ... * 2 * 1</ins>
+
+let us write it to make this clear
+> (n-1)! = (n-1) * (n-1-1) * (n-1-2-) *... *2 * 1 = (n-1) * (n-2) * (n-3) *...* 2 * 1
+
+now it means we can write our function shortly like this
+> n! = n * (n-1)!
+
+In this case we found recursive case. let us write this case in code.
+```python
+# our function for  n! = n * (n-1)! expression
+def factorial(n):
+    print(n)    # we add this temporaily to understand what is going on.
+    return n * factorial(n-1)
+
+# we have developed recursive case(step1) in python
+```
+Out factorial calculation is almost done. We can say this function is enough for factorial, but this func has a bug. let us run this func.
+```bash
+python3 factorial.py
+...
+RecursionError: maximum recursion depth exceeded while calling a Python object
+
+# we will get maximum recursion depth exceeded error. 
+```
+This means we have limits to keep recurstion funcs in memory. we can increase this limit as below.
+```python
+import sys
+sys.setrecursionlimit(10000)
+```
+but our purpose is to prevent such case without increasing limit. because if we check output we will see our function keeps calling itself without stopping. if we have such case in application it will lead to crash. We impement this(prevent such case) in step 2.
+
+__`Step 2  Base case - the stopping criteria`__
+We need base case to prevent infinite loop. when base case meets function will stop calling itself. We know below expression are true:
+```
+0! = 1
+1! = 1
+```
