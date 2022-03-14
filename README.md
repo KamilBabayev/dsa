@@ -212,3 +212,74 @@ We need base case to prevent infinite loop. when base case meets function will s
 0! = 1
 1! = 1
 ```
+Now let us write base condition in our function
+```python
+def factorial(n):
+    if n in [0, 1]:
+        return 1
+    else:
+        return n * factorial2(n-1)
+```
+
+__`Step 3 Unintentional case - the constraint`__
+
+one of important things to consider when writing recursive function is to make sure that function will stop for every possible argument. Now in this phase we need to find in which case our function doesnt stop. In our case function will reach a base case only if n is a non negative integer. We know that factorial is calculated for posituve numbers. Now if we pass negative number to our factorial function we will get max recursion depth error. We 
+We need to prevent this case also. There are many ways to achieve this, but we will use simple assertion method which throw an error if n is a non negative number. we can check like this:
+> assert n>=0 and int(n) == n, 'the number must be positive integer'
+final factorial func will be like this:
+```python
+def factorial2(n):
+    assert n >= 1 and int(n) == n, 'number must be positive integer'
+    if n in [0,1]:
+        return 1
+    else:
+        return n * factorial2(n-1)
+```
+Now if we enter negative or float number as argument we will get error.
+
+### __`Fibonacci numbers -  Recursion`__
+We will use above exlained 3 steps to create recursive function to calculate fibonacci numbers. `Fibonacci sequence` is a sequence of a numbers in which each number is sum of the two preceding ones and the sequence starts from 0 and 1. Ex:
+> 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89....
+
+`step 1 - recursive case`
+
+> f(n) = f(n-1) + f(n-2)     
+
+```python
+def fibonacci(n):
+    return fibonacci(n-1) + finonacci(n-2)
+
+finbonacci(5)       # but this function will return error saying max 
+                    # recursion depth exceeded because we dont have base 
+                    # condition
+```
+
+`step 2 - base condition`
+
+we know that fibonacci of 0 is 0 and fibonacci of 1 is 1. so we can use this as base class.
+```python
+def fibonacci(n):
+    if n in [0, 1]:
+        return n
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+```
+
+`step 3 - unintentional case - the constraint`
+
+here we also need check negative and float numbers
+- fibonacc(-3)      ??
+- fibonacci(3.3)    ??
+
+```python
+def fibonacci(n):
+    assert n >= 0 and int(n) == n, 'fibonacci number can not be negative or non integer'
+    if n in [0, 1]:
+        return n
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+```
+
+
+
+
