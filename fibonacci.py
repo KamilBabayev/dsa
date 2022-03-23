@@ -1,6 +1,4 @@
 
-from backoff import fibo
-
 
 def fibonacci(n):
     assert n >= 0 and int(n) == n, 'fibonacci number can not be negative or non integer'

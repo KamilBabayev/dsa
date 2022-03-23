@@ -280,6 +280,171 @@ def fibonacci(n):
         return fibonacci(n-1) + fibonacci(n-2)
 ```
 
+### __`Recursion interview questions`__
+1. How to find the `sum of digits of a positive integer number` using recursion ?
+
+```
+10   10/10 = 1 and remainder = 0
+54   50/10 = 5 and remainder = 4
+112  112/10 = 11 and remainder = 1
+     11/10 = 1 and remainder = 1
+```
+> f(n) = n%10 + f(n/10)
+
+```python
+def sum_of_digits(n):
+    assert n >= 0 and int(n) == n, 'only positive numbers'
+    if n == 0:
+        return 0
+    else:
+        return int(n%10) + sum_of_digits(n//10)
+```
+
+2. How to calculate `power of number` using recursion ?
+
+2.1 Recursive case
+
+> x<sup>n</sup> = x * x * x * ..(n times).. * x
+
+2<sup>4</sup> = 2 * 2 * 2 * 2  # if base is same we can write like this
+>x<sup>a</sup> * x<sup>b</sup> = x<sup>a+b</sup>
+
+>2<sup>3</sup> * 2<sup>4</sup> = 2<sup>3+4</sup>
+
+We can write out expression like this
+>x<sup>n</sup> = x * x<sup>n-1</sup>
+
+2.2 Base case - stopping criterion. as we know
+>n<sup>0</sup> = 1
+
+>n<sup>1</sup> = n
+
+And we will use this as base condition, when n reaches 0 or 1 we we return 0 or 1.
+
+2.3 Unintentional case - the constraint
+
+we will pass negative and float numbers as argument for base and exp and check result. based on fails we write assert in our function.
+
+```python
+def power_of_number(base, exp):
+    assert exp>=0 and int(exp) == exp, 'the exponent must be positive number'
+    if exp == 0:
+        return 0
+    if exp == 1:
+        return base
+    else:
+        return base * power_of_number(base, exp-1)
+```
+
+3. How to find `GCD(Greatest Common Divisor) of two numbers` using recursion?
+
+`3.1.`  Recursive case - the flow
+
+GCD is largest positive integer that divides numbers without remainder.
+> gcd(8, 12) = 4
+
+How we find this? One way to find this to find prime factorization of two numbers.
+```
+8 = 2 * 2 * 2
+12 = 2 * 2 * 3
+```
+Here if we take overlapping numbers from both it is 2*2. So gcd is 2 * 2 = 4
+
+Another methods is `Euclidean algoritm` 
+```
+gcd(48, 18)
+step1: 48 / 18 = 2 remainder 12 
+step2: 18 / 12 = 1 remainder 6
+step3: 12 / 6 =  2 remainder 0
+```
+If we pay attention we can see recursion. On every step we see second number(18) becomes first and remainder becomes second.
+
+based on above we can write it like below forms
+```
+gcd(a, 0) = a
+gcd(a, b) = gcd(b, a mod b)
+```
+
+Now let us write our function.
+```python
+def gcd(a. b):
+    return gcd(b, a%b)
+```
+If we run function ex: `gcd(48, 18)`  we will get ZeroDivisionError error.
+
+`3.2.` Base case - stopping cretetion
+
+- b = 0
+
+We can take `gcd(a, 0) = a` and write it as our Base condition
+```python
+def gcd(a. b):
+    if b == 0:
+        return a
+    else:
+        return gcd(b, a%b)
+```
+If we run this now as `gcd(48, 12)` we will get 6 which is correct.
+
+`3.3.` Unintentional case - the constraint
+- Positive integers
+- Convert negative numbers to positive
+
+Our final function will be like
+```python
+def gcd(a, b):
+    assert int(a) == a and int(b) == b, 'the numbers must be integer only'
+    if a < 0:
+        a = -1 * a
+    if b < 0:
+        b = -1 * b
+    if b == 0:
+        return a
+    else:
+        return gcd(b, a % b)
+```
 
 
+4. How to convert a number from `decimal` to a `binary` using recursion
+`4.1.`  Recursive case - the flow
+1. devide number by 2
+2. get the integer quotinent for the next iteration
+3. get the remainder for binary digit
+4. repeat the steps until quotinent is equal to 0
 
+Let us see example based on number 13. (13 to binary conversion)
+
+| Division by  | Quotinent  | Remainder  |
+|---|---|---|
+| 13/2 | 6 | 1  |
+| 6/2 | 3 | 0  |  
+| 3/2 | 2 | 1  | 
+| 1/2 | 0 | 1  | 
+
+We repeat steps until we reach 0 as quotinent. Binary number will be as
+`1101` from back to forward. Let us see another example:
+
+| Division by  | Quotinent  | Remainder  |
+|---|---|---|
+| 10/2 | 5 | 0  |
+| 5/2 | 2 | 1  |  
+| 2/2 | 1 | 0  | 
+| 1/2 | 0 | 1  | 
+
+we get binary number `1010`. This is how we convert decimal to binary. But we need to find recursive case. Without recursive case we can not develop recursive function.
+
+In order to formalize recursive func from above table we can write it from bottom to top like:
+1010
+```
+1 * 10 + 0 = 10
+10 * 10 + 1 = 101
+101 * 10 + 0 = 1010
+```
+And we can write it like `f(n) = n mod 2 + 10 * f(n/2)`
+
+
+```python
+def decimal_to_binary(n):
+    return n % 2 + 10 * decimal_to_binary(n/2)
+
+```
