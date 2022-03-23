@@ -448,3 +448,24 @@ def decimal_to_binary(n):
     return n % 2 + 10 * decimal_to_binary(n/2)
 
 ```
+
+
+## __`Big O Notation`__
+We use `Big O` notation to metric efficiency of algoritms. Without understanding `Big O notation` it is not possible to develop efficient algoritm. If we dont know when our algoritm gets slower or faster it will be hard to judge our program's performance. This consept gives us one way of describing what time our function takes to run grows as the size of input grows. Dependence of function runtime on input size. Example:
+
+```python
+# in this example function runtime will get longer depending input size
+def digits_sum01(n):
+    sum = 0
+    for i in range(n):
+        sum += i
+    return 0
+
+
+# in this example function runtime will remain same without depening input # size
+def digits_sum02(n):
+    sum = (n+1) * 10 // 2
+    return sum
+```
+
+`For ex:` we need send data to our friend daily. We can send data digitally. All will be acceptible if data size is small, but as soon as it gets larger the delivery time will get bigger also. Depending on size this way of delivery may become unacceptible. Another way is to use via transport(plane for ex). In this case the delivery time will remain same not depending on data size.
