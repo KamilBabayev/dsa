@@ -502,3 +502,15 @@ Let us go over example: we have 1 array with 1 million elements and our goal is 
 For `Big O` it will be `O(n)` it can not be bigger than n. It terms of Omega `(Big Ω)` it will be `Ω(1)` - the minimum time fo find any given element is 1. it will not be less than 1. In case of `Theta (Big Θ)` it will be `Θ(n\2)`  - this is the average number to find any given number.
 
 This 3 types of notations mostly used for academic purposes but for interviews mostly `Big O` notation are asked.
+
+
+### Algorith time complexities.
+There are many algorithm time complexities. We will have a look some of them.
+
+| Complexity  | Name  | Sample  |
+|---|---|---|
+| O(1) | Constant | Accessing a specifing element in array  |
+| O(n) | Linear | Loop trhough array elements  |  
+| O(log n) | Logarithmic | Find an element in sorted array  | 
+| O(n<sup>2</sup>) | Quadrantic | Looking at a every index in the array twice  | 
+| O(2<sup>n</sup>) | Exponential | Double recursion in fibonacci  | 
