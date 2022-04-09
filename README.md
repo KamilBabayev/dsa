@@ -473,7 +473,7 @@ def digits_sum02(n):
 O(n),  O(n<sup>2</sup>), O(2<sup>n</sup>)
 
 These are called `time complexity`.  The time complexity of painting a wall
-with `w width` and `h height` can be described as `O(hw)`.  So as sizes of h and/or w increases time to paint call will increase accordingly. Some algoritms are faster when input is smaller, but gets slower when input gets larger. To avoid such cases, prober algoritms must be chosen.
+with `w width` and `h height` can be described as `O(hw)`.  So as sizes of h and/or w increases time to paint call will increase accordingly. Some algoritms are faster when input is smaller, but gets slower when input gets larger. To avoid such cases, proper algoritms must be chosen.
 
 
 ### Algorithm runtime notations
@@ -489,12 +489,11 @@ Similarly algorithms can perform differently based on given condition. We have 3
 - Worth case
 
 ex: our function completes 5ms in best, 10 in average and 20 in worth case scenarios.
-Let us give example based on `Quick sort algorithm`. This algo does operation based on randomly choosen number and depending on choosen number location and value, we can get different execution time. In best case it will be `O(n)`, in worth case it will be `O(n<sup>2</sup>)`, in average case
-`O(n log n)`
+Let us give example based on `Quick sort algorithm`. This algo does operation based on randomly choosen number and depending on choosen number location and value, we can get different execution time. In best case it will be `O(n)`, in worth case it will be O(n<sup>2</sup>) , in average case `O(n log n)`
 
 Now to express different scenarios of algos there are 3 diff big O notations.
 - `Big O` - it is a complexity that is going to be less or equal to the worst case. This shows the max time algo needs to run. for ex we need to sort 1000 numbers, and we know that algo will complete max 10 secs. In c Big O it means in worst case this will run 10 or below seconds.
-- `Big - Ω (Big-Omega)` - it is a complexity that is going to be at least more than the best. Here we measure min time that algo needs to run. There can be cases we need to know what is the minimum time algo needs to run. So if best case for algo is 2 seconds, we know that we will need at least 2 secs for algo to run. In case of Big Omega it will be never less that 2 seconds. Sometimes this info will ne useful for us.
+- `Big - Ω (Big-Omega)` - it is a complexity that is going to be at least more than the best. Here we measure min time that algo needs to run. There can be cases we need to know what is the minimum time algo needs to run. So if best case for algo is 2 seconds, we know that we will need at least 2 secs for algo to run. In case of Big Omega it will be never less that 2 seconds. Sometimes this info will be useful for us.
 - `Big Theta (Big Θ)` - it is a complexity that is within bounds of the worst and best cases. It means if we have algo with worth 10 seconds and with best 2 seconds runtime, the average will be 6 seconds for this algo.
 
 Let us go over example: we have 1 array with 1 million elements and our goal is to find the number within this array. If number is located at the end of array and in order to get last element we need to go over all elements and if one going over 1 element takes 1 ms then the result will be 1ms * n.  n is lenght of array. 
@@ -514,3 +513,45 @@ There are many algorithm time complexities. We will have a look some of them.
 | O(log n) | Logarithmic | Find an element in sorted array  | 
 | O(n<sup>2</sup>) | Quadrantic | Looking at a every index in the array twice  | 
 | O(2<sup>n</sup>) | Exponential | Double recursion in fibonacci  | 
+
+
+`O(1)`  - `constant time`, for any given input execution time will not change. ex: accessing specific index within an array. It dosnt matter how many elements looking to specific element of array will take same amount of time. For ex: we need to take random card emong bunch of cards. which of card we take the time we spend will be same. because we dont check anything or do any operation just drag any random card from many. 
+
+`array = [2,3,4,5,6]`    `array[0]` or `array[4]` will be accessed at same time.
+
+`O(n)` - `Linear time` time complexity will grow depending on input data.
+
+```python
+numbers = [2, 3, 4, 5, 6, 7]
+for number in numbers:
+    print(number)
+```
+Here we go over elements of numbers array. if size of array increase, the amount of time for going over its elements will increase accordingly. The large the array the more time will be required to go over array elements.
+
+`O(log n)` - logarithmic time complexity. Find an element in sorted array.
+```python
+numbers = [2, 3, 4, 5, 6, 7, 11, 12, 14]
+for index in numbers(0. len(numbers), 3):
+    print(numbers[index])
+// logarithmic time since it will visit only some elements
+```
+As an example, book has 400 pages and we need to find page 343. we divide book
+to 2 part 1 - 200, 201-400, then 201-300, 301-400, then 301-350, 351-400 and so on. till we find needed page.
+Findind an element in sorted array is an example for logarithmic time complexity. Using `binary search` algorithm we can achieve logarithmic time complexity. We are looking for x in n elemented sorted array. ex:
+```
+search 9 within [1, 5, 8, 9, 11, 13, 15, 19, 21]
+compare 9 to 11 -> smaller    # here by saying 9 we mean num position.
+search 9 within [1, 5, 8, 8]
+compare 9 to 8 -> bigger
+search 9 within [9]
+compare 9 to 9
+return
+```
+
+O(n<sup>2</sup>) - `quadratic time complexity` it is like linear but here time increase quadratic. Its performance directly dependent size of input dataset.Within our programs this complexity happens when we nest multiple iterations.
+```
+numbers = [2, 4, 5, 6, 7]
+for a in numbers:
+    for b in numbers:
+        print(a, " => ", b*2)
+```
