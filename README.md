@@ -555,3 +555,16 @@ for a in numbers:
     for b in numbers:
         print(a, " => ", b*2)
 ```
+
+O(2<sup>n</sup>) - `exponential time complexity` grows doubles with each addition to the input. Time complexity starts with very low but continues with increasing manner till end. Fibonacci numbers are the great way to express exponential complexity, although there is a way a Finonacci function have a shorter time complexity. For this case we will show double recursive methods
+as an example.
+
+```python
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+```
+Since the number of recursive calls directly related to the input number, we can see that lookup time(recursive method calls) will change depending on input number.
+
+![](https://miro.medium.com/max/1200/1*5ZLci3SuR0zM_QlZOADv8Q.jpeg)
