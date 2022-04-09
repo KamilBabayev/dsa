@@ -449,8 +449,9 @@ def decimal_to_binary(n):
 
 ```
 
+## __`Time Complexities`__
 
-## __`Big O Notation`__
+### __`Big O Notation`__
 We use `Big O` notation to metric efficiency of algoritms. Without understanding `Big O notation` it is not possible to develop efficient algoritm. If we dont know when our algoritm gets slower or faster it will be hard to judge our program's performance. This consept gives us one way of describing what time our function takes to run grows as the size of input grows. Dependence of function runtime on input size. Example:
 
 ```python
@@ -568,3 +569,32 @@ def fibonacci(n):
 Since the number of recursive calls directly related to the input number, we can see that lookup time(recursive method calls) will change depending on input number.
 
 ![](https://miro.medium.com/max/1200/1*5ZLci3SuR0zM_QlZOADv8Q.jpeg)
+
+
+
+
+## __`Space Complexity`__
+Time is not only metric that matters in algoritms. We need to take into account
+memory or space that is required by algoritm. This is parallel concept to time complexity. Space complexity is a measure of working storage an algo needs. How much memory in worst case algo needs. We should think how space consumption grows as input grows.
+
+an array of size `n` then O(n) size, if an array of n*n then O(n<sup>2</sup>) size will be required. ex:
+
+```python
+def sum(n):
+    if n <= 0:
+        return 0
+    else:
+        return n + sum(n-1)
+```
+So here on each recursive call func adds entry to the stack in memory. So if each call adds layer to stack depending number of input then we need `O(n)` space complexity for this function. another ex:
+```python
+def pair_sum_sequence(n):
+    sum = 0
+    for i in range(0, n+1):
+        sum = sum + pair_sum(i, i+1)
+    return sum
+
+def pair_sum(a, b):
+    return a + b
+```
+as function doesnt call itself and no need to call simultaneously this is more effective and considered `O(1)` space complexity.
