@@ -716,7 +716,7 @@ def find_max_num_rec(array_a, n):
 
 
 ## __`Top 10 Big O interview questions`__
-`Question 1` What is the runtime of below code ?
+`Question 1 Product and Sum` What is the runtime of below code ?
 
 ```python
 # let us try to find with above learned rule table
@@ -734,3 +734,15 @@ def func01(array_a):
 # If we combine above complexities we will get O(n) as we know we 
 # drop non dominants and keep dominant one
 ```
+
+`Question 2 Print Pairs` What is the runtime of below code ?
+```python
+def print_pairs(array_a):
+    for x in array_a:                       # nested loop, O(n2)
+        for y in array_a:                   # loop, O(n)
+            print(str(x) + ", " + str(y))   # print, O(1)
+
+# time complx. will be O(n2) if we sum and take dominant one.
+```            
+
+`Question 2 Print Unordered Pairs` What is the runtime of below code ?
