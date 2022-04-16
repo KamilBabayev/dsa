@@ -690,6 +690,47 @@ def find_biggest_number(array_a):
 O(1) + O(1) + O(1) + O(1) = O(1)
 O(n) + O(1) = O(n)
 
-So at the end time complexity for this code part is  O(n). depending on entered array size time complexity of our code will be linear.
+So at the end time complexity for this code part is  O(n). 
+Depending on entered array size time complexity of our code will be linear.
 
+```
+
+
+### `How measure Recursive algorithms`
+Here we will use same example with array, but this time we will find biggest number with recirsive calls.
+```python
+
+def find_max_num_rec(array_a, n):
+    if n == 1:
+        return array_a[0]
+    return max(array_a[n-1], find_max_num_rec(array_a, n-1))
+```
+
+
+
+
+### `How measure Recursive algorithms that make multiple calls`
+
+
+
+
+
+## __`Top 10 Big O interview questions`__
+`Question 1` What is the runtime of below code ?
+
+```python
+# let us try to find with above learned rule table
+def func01(array_a):                
+    sum = 0                        # assignment, O(1)
+    product = 1                    # assignment, O(1)
+
+    for i in array_a:              # loop,  O(n)
+        sum += i                   # assignment, O(1)
+
+    for i in array_a:              # loop, O(n)
+        product *= i               # assignment, O(1)
+    print("Sum = " + str(sum) + ", Product = " + str(product)) # print, O(1)
+
+# If we combine above complexities we will get O(n) as we know we 
+# drop non dominants and keep dominant one
 ```
