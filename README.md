@@ -681,8 +681,15 @@ array_a = [2,3,4,... 45,47, 56,...39,299..]
 def find_biggest_number(array_a):
     biggest_number = array_a[0]              # assignment, means O(1)
     for index in range(1, len(array_a)):     # loop, linear time complex. O(n)
-        if array_a[index] > biggest_number:
-            biggest_number = array_a[index]
-    print(biggest_number)
+        if array_a[index] > biggest_number:  # if also constant time complx. O(1)
+            biggest_number = array_a[index]  # assignment again O(1)
+    print(biggest_number)                    # print also const. time complx. O(1)
+
+# Now we need to sum above time complexities to get final result.
+# As we know during sum we should remove non-dominant ones. result will be dominant one.
+O(1) + O(1) + O(1) + O(1) = O(1)
+O(n) + O(1) = O(n)
+
+So at the end time complexity for this code part is  O(n). depending on entered array size time complexity of our code will be linear.
 
 ```
