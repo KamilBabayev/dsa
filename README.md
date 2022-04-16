@@ -655,3 +655,34 @@ for a in range(1000):
     for b in range(1000):
         print(a, b)
 ```
+
+### `How to measure the codes using Big O`
+
+
+| Rules  | Description  | Complexity  |
+|---|---|---|
+| Rule1 | Any assignment statements and if statements that are exeucted once regardless of the size of the problem| O(1)  |
+| Rule2 | A simple `for` loop from 0 to n (with no internal loops)  | O(n)  |  
+| Rule3 | A nested loop of the same type takes quadratic time complexity | O(n<sup>2</sup>)  | 
+| Rule4 | A loop in which the controlling parameter is devided by two at each step | O(log n)  | 
+| Rule5 | When dealing with multiple statements, just add them up |   | 
+
+These are most common rules to analyze the given code.
+
+Let us imageine we have large array from which we need to find biggest element.
+
+array_a = [2,3,4,... 45,47, 56,...39,299..]
+
+
+```python
+# The code to find biggest number 
+# we will analyze code based on above rule table
+
+def find_biggest_number(array_a):
+    biggest_number = array_a[0]              # assignment, means O(1)
+    for index in range(1, len(array_a)):     # loop, linear time complex. O(n)
+        if array_a[index] > biggest_number:
+            biggest_number = array_a[index]
+    print(biggest_number)
+
+```
