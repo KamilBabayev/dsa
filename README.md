@@ -598,3 +598,60 @@ def pair_sum(a, b):
     return a + b
 ```
 as function doesnt call itself and no need to call simultaneously this is more effective and considered `O(1)` space complexity.
+
+
+### `Drop the Constants and Non Dominant Terms`
+It means we can eliminate some values from asymptotic analysis. Ex:
+
+Drop Constant
+
+O(2N) --> O(N)    # here we drop 2 as constant and make it N.
+
+Drop Non Dominant Terms
+
+O(N<sup>2</sup>+N) ---> O(N<sup>2</sup>)
+
+O(N + logN)  --->  O(N)   # because O(LogN) faster than O(N) we drop it because 
+                            O(N) includes O(logN)  also.
+
+Why we drop Contants and non dominant terms ?
+Investigate more deeply.
+
+### `Add vs Multiply`
+If our algoritm is in the form of `do this, then when you are all done, do that`
+then we add the runtime.
+```python
+for a in array_a:
+    print(a)
+
+for b in array_b:
+    print(b)
+
+# Here Runtimes will be added:  O(A+B)
+```
+
+If our algoritm is in the form `do this for each time you do that` then we multiply runtimes.
+```python
+for a in array_a:
+    for b in array_b:
+        print(a, b)
+
+# Here we multiple runtimes:   O(A*B)
+```
+In order to understand above example better run this code to see time complexity difference. It means we need to avoid nested loops.
+```python
+import time
+
+for a in range(1000):
+    print(a)
+
+for b in range(1000):
+    print(b)
+
+
+time.sleep(5)
+
+for a in range(1000):
+    for b in range(1000):
+        print(a, b)
+```
